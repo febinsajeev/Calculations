@@ -14,13 +14,13 @@ namespace Calculations
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currencyCounter"></param>
-        /// <returns></returns>
-        public static ArrayList CountCurrency(decimal amount, out decimal[] currencyCounter)
+        /// <returns></returns>       
+        public static ArrayList CountCurrency(decimal amount)
         {
             //Denominations of eurocurrencies            
-            decimal[] euroCurrencies = FetchCurrencies();           
+            decimal[] euroCurrencies = FetchCurrencies();
             ArrayList tempCurrencies = new ArrayList();
-            currencyCounter = new decimal[euroCurrencies.Length];
+            decimal[] currencyCounter = new decimal[euroCurrencies.Length];
 
             // to calculate the count against each denominations from the balance amount 
             for (int i = 0; i < euroCurrencies.Length; i++)
@@ -32,6 +32,7 @@ namespace Calculations
                 }
             }
 
+            PassCurrencyCounter(currencyCounter);
             // constructing the output
             for (int i = 0; i < euroCurrencies.Length; i++)
             {
@@ -51,6 +52,11 @@ namespace Calculations
             }
             return tempCurrencies;
         }
+        public static decimal[] PassCurrencyCounter(decimal[] currencyCounter)
+        {
+            return currencyCounter;
+        }
+
         /// <summary>
         /// Fetch pound currencies from file
         /// </summary>
