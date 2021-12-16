@@ -19,7 +19,7 @@ namespace BalanceCalculationApp
             InitializeComponent();
         }
 
-        private void calculate_Click(object sender, EventArgs e)
+        private void Calculate_Click(object sender, EventArgs e)
         {
             decimal amountBalance = 0;
             decimal amountProduct = 0;
@@ -45,7 +45,7 @@ namespace BalanceCalculationApp
             if (amountBalance > 0)
             {
                 labelBalance.ForeColor = Color.White;
-                values = CurrencyCalculation.countCurrency(amountBalance, out currencyCounter);
+                values = CurrencyCalculation.CountCurrency(amountBalance, out currencyCounter);
                 labelDenominations.TextAlign = ContentAlignment.MiddleCenter;
                 labelDenominations.ForeColor= Color.White;
                 foreach (string x in values)
@@ -55,10 +55,8 @@ namespace BalanceCalculationApp
             }
             else
             {
-
                 labelBalance.ForeColor = Color.Red;
             }
-
         }
       
         private void Reset_Click(object sender, EventArgs e)
@@ -66,8 +64,7 @@ namespace BalanceCalculationApp
             textBoxProduct.Text = "";
             textBoxAmountReceived.Text = "";
             labelBalance.Text = "";
-            labelDenominations.Text = "";
-          
+            labelDenominations.Text = "";          
         }
 
     }

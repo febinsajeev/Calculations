@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,15 @@ namespace Calculations
 {
     public static class CurrencyCalculation
     {   /// <summary>
-        /// this class is for calculating the Currency denominations
+        /// This class is for calculating the Currency denominations
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currencyCounter"></param>
         /// <returns></returns>
-        public static ArrayList countCurrency(decimal amount, out decimal[] currencyCounter)
+        public static ArrayList CountCurrency(decimal amount, out decimal[] currencyCounter)
         {
-            //Denominations of eurocurrencies
-            decimal[] euroCurrencies = new decimal[] { 100, 50, 20, 10, 20, 5, 2, 1, 0.5m, 0.25m, 0.2m, 0.1m, 0.06m, 0.05m, 0.02m, 0.01m, 0.005m };
+            //Denominations of eurocurrencies            
+            decimal[] euroCurrencies = FetchCurrencies();           
             ArrayList tempCurrencies = new ArrayList();
             currencyCounter = new decimal[euroCurrencies.Length];
 
@@ -30,7 +31,6 @@ namespace Calculations
                     amount = amount - currencyCounter[i] * euroCurrencies[i];
                 }
             }
-
 
             // constructing the output
             for (int i = 0; i < euroCurrencies.Length; i++)
@@ -47,12 +47,30 @@ namespace Calculations
                         tempCurrencies.Add(currencyCounter[i] + " x "
                             + Math.Round(euroCurrencies[i] * 100, 0) + "p");
                     }
-
                 }
-
             }
             return tempCurrencies;
-
+        }
+        /// <summary>
+        /// Fetch pound currencies from file
+        /// </summary>
+        /// <returns></returns>
+        private static decimal[] FetchCurrencies()
+        {
+            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\Currencies.txt");
+            string sFilePath = Path.GetFullPath(sFile);
+            var list = new List<decimal>();
+            var fileStream = new FileStream(sFilePath, FileMode.Open, FileAccess.Read);
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    list.Add(Convert.ToDecimal(line));
+                }
+            }
+            return list.ToArray();
         }
     }
 }

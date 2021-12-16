@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxProduct = new System.Windows.Forms.TextBox();
             this.textBoxAmountReceived = new System.Windows.Forms.TextBox();
-            this.calculate = new System.Windows.Forms.Button();
+            this.Calculate = new System.Windows.Forms.Button();
             this.labelBalanceDisplay = new System.Windows.Forms.Label();
             this.labelBalance = new System.Windows.Forms.Label();
             this.labelDenominationsDisplay = new System.Windows.Forms.Label();
@@ -86,18 +86,18 @@
             this.textBoxAmountReceived.Size = new System.Drawing.Size(132, 22);
             this.textBoxAmountReceived.TabIndex = 3;
             // 
-            // calculate
+            // Calculate
             // 
-            this.calculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calculate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.calculate.Location = new System.Drawing.Point(387, 182);
-            this.calculate.Margin = new System.Windows.Forms.Padding(4);
-            this.calculate.Name = "calculate";
-            this.calculate.Size = new System.Drawing.Size(100, 28);
-            this.calculate.TabIndex = 4;
-            this.calculate.Text = "Calculate";
-            this.calculate.UseVisualStyleBackColor = true;
-            this.calculate.Click += new System.EventHandler(this.calculate_Click);
+            this.Calculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Calculate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Calculate.Location = new System.Drawing.Point(387, 182);
+            this.Calculate.Margin = new System.Windows.Forms.Padding(4);
+            this.Calculate.Name = "Calculate";
+            this.Calculate.Size = new System.Drawing.Size(100, 28);
+            this.Calculate.TabIndex = 4;
+            this.Calculate.Text = "Calculate";
+            this.Calculate.UseVisualStyleBackColor = true;
+            this.Calculate.Click += new System.EventHandler(this.Calculate_Click);
             // 
             // labelBalanceDisplay
             // 
@@ -187,7 +187,7 @@
             this.Controls.Add(this.labelDenominationsDisplay);
             this.Controls.Add(this.labelBalance);
             this.Controls.Add(this.labelBalanceDisplay);
-            this.Controls.Add(this.calculate);
+            this.Controls.Add(this.Calculate);
             this.Controls.Add(this.textBoxAmountReceived);
             this.Controls.Add(this.textBoxProduct);
             this.Controls.Add(this.label2);
@@ -210,7 +210,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxProduct;
         private System.Windows.Forms.TextBox textBoxAmountReceived;
-        private System.Windows.Forms.Button calculate;
+        private System.Windows.Forms.Button Calculate;
         private System.Windows.Forms.Label labelBalanceDisplay;
         private System.Windows.Forms.Label labelBalance;
         private System.Windows.Forms.Label labelDenominationsDisplay;
