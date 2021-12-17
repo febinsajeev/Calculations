@@ -22,17 +22,11 @@ namespace Calculations
             ArrayList tempCurrencies = new ArrayList();
             decimal[] currencyCounter = new decimal[euroCurrencies.Length];
 
-            // to calculate the count against each denominations from the balance amount 
-            for (int i = 0; i < euroCurrencies.Length; i++)
-            {
-                if (amount >= euroCurrencies[i])
-                {
-                    currencyCounter[i] = Math.Floor(Math.Round(amount / euroCurrencies[i], 2));
-                    amount = amount - currencyCounter[i] * euroCurrencies[i];
-                }
-            }
-
-            PassCurrencyCounter(currencyCounter);
+            //CalculateDenominations
+            CalculateDenominations(euroCurrencies, currencyCounter, amount);
+         
+            CurrencyCounter(currencyCounter);
+           
             // constructing the output
             for (int i = 0; i < euroCurrencies.Length; i++)
             {
@@ -52,9 +46,33 @@ namespace Calculations
             }
             return tempCurrencies;
         }
-        public static decimal[] PassCurrencyCounter(decimal[] currencyCounter)
+        /// <summary>
+        /// Currency Counter
+        /// </summary>
+        /// <param name="currencyCounter"></param>
+        /// <returns></returns>
+        public static decimal[] CurrencyCounter(decimal[] currencyCounter)
         {
             return currencyCounter;
+        }
+        /// <summary>
+        /// Calculate Denominations
+        /// </summary>
+        /// <param name="euroCurrencies"></param>
+        /// <param name="currencyCounter"></param>
+        /// <param name="amount"></param>
+        public static void CalculateDenominations(decimal[] euroCurrencies, decimal[] currencyCounter, decimal amount)
+        {
+            // to calculate the count against each denominations from the balance amount 
+            for (int i = 0; i < euroCurrencies.Length; i++)
+            {
+                if (amount >= euroCurrencies[i])
+                {
+                    currencyCounter[i] = Math.Floor(Math.Round(amount / euroCurrencies[i], 2));
+                    amount = amount - currencyCounter[i] * euroCurrencies[i];
+                }
+            }
+
         }
 
         /// <summary>
@@ -78,6 +96,39 @@ namespace Calculations
             }
             return list.ToArray();
         }
+        /// <summary>
+        /// method to calculateBalance amount
+        /// </summary>
+        /// <param name="amountProduct"></param>
+        /// <param name="amountReceived"></param>
+        /// <returns></returns>
+        public static decimal CalculateBalance(decimal amountProduct = 0, decimal amountReceived = 0)
+        {
+            decimal amountBalance = 0;
+            amountBalance = amountReceived - amountProduct;
+            return amountBalance;
+
+        }
+        /// <summary>
+        /// method to Validate Inputs
+        /// </summary>
+        /// <param name="amountproduct"></param>
+        /// <param name="amountreceived"></param>
+        /// <returns></returns>
+        public static int ValidateInputs(string amountproduct, string amountreceived)
+        {
+            decimal result;
+            if (amountproduct == string.Empty || amountreceived == string.Empty)
+            {
+                return 1;
+            }
+            else if (!Decimal.TryParse(amountproduct, out result) || !Decimal.TryParse(amountreceived, out result))
+            {
+                return 2;
+            }
+            return 0;
+        }
+
     }
 }
 

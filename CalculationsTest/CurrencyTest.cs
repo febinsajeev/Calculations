@@ -20,8 +20,40 @@ namespace CalculationsTest
         public void CurrencyCounterTest()
         {
             decimal[] expectedCounter = {0,0,0,1,0,0,2,0,1,0,0,0,0,0,0,0,0};
-            decimal[] actualResult = CurrencyCalculation.PassCurrencyCounter(expectedCounter);
+            decimal[] actualResult = CurrencyCalculation.CurrencyCounter(expectedCounter);
             CollectionAssert.AreEqual(actualResult, expectedCounter);
+        }
+
+        [TestMethod]
+        public void CalculateBalanceTest()
+        {
+            decimal expectedBalance = 14.5m;
+            decimal actualBalance = CurrencyCalculation.CalculateBalance(5.5m,20);
+            Assert.AreEqual(actualBalance, expectedBalance);
+        }
+
+        [TestMethod]
+        public void ValidateEmptyInputsTest()
+        {
+            int expectedValue = 1;
+            int actualValue = CurrencyCalculation.ValidateInputs("", "");
+            Assert.AreEqual(actualValue, expectedValue);
+        }
+
+        [TestMethod]
+        public void ValidateStringInputsTest()
+        {
+            int expectedValue = 2;
+            int actualValue = CurrencyCalculation.ValidateInputs("ss", "ss");
+            Assert.AreEqual(actualValue, expectedValue);
+        }
+
+        [TestMethod]
+        public void ValidateCorrectInputsTest()
+        {
+            int expectedValue = 0;
+            int actualValue = CurrencyCalculation.ValidateInputs("5.5", "20");
+            Assert.AreEqual(actualValue, expectedValue);
         }
     }
 }
