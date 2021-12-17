@@ -17,14 +17,6 @@ namespace CalculationsTest
         }
 
         [TestMethod]
-        public void CurrencyCounterTest()
-        {
-            decimal[] expectedCounter = {0,0,0,1,0,0,2,0,1,0,0,0,0,0,0,0,0};
-            decimal[] actualResult = CurrencyCalculation.CurrencyCounter(expectedCounter);
-            CollectionAssert.AreEqual(actualResult, expectedCounter);
-        }
-
-        [TestMethod]
         public void CalculateBalanceTest()
         {
             decimal expectedBalance = 14.5m;
@@ -55,5 +47,17 @@ namespace CalculationsTest
             int actualValue = CurrencyCalculation.ValidateInputs("5.5", "20");
             Assert.AreEqual(actualValue, expectedValue);
         }
+
+        [TestMethod]
+        public void CalculateDenominationsTest()
+        {
+            decimal[] expectedCounter = { 0, 0, 0, 1, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 };
+            decimal[] euroCurrencies = CurrencyCalculation.FetchCurrencies();
+            decimal[] currencyCounter = new decimal[euroCurrencies.Length];
+            decimal[] actualCounter = CurrencyCalculation.CalculateDenominations(euroCurrencies, currencyCounter, 14.5m);
+            CollectionAssert.AreEqual(actualCounter, expectedCounter);
+        }
+
+
     }
 }

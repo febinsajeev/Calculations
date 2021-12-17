@@ -23,9 +23,7 @@ namespace Calculations
             decimal[] currencyCounter = new decimal[euroCurrencies.Length];
 
             //CalculateDenominations
-            CalculateDenominations(euroCurrencies, currencyCounter, amount);
-         
-            CurrencyCounter(currencyCounter);
+            currencyCounter = CalculateDenominations(euroCurrencies, currencyCounter, amount);
            
             // constructing the output
             for (int i = 0; i < euroCurrencies.Length; i++)
@@ -46,22 +44,14 @@ namespace Calculations
             }
             return tempCurrencies;
         }
-        /// <summary>
-        /// Currency Counter
-        /// </summary>
-        /// <param name="currencyCounter"></param>
-        /// <returns></returns>
-        public static decimal[] CurrencyCounter(decimal[] currencyCounter)
-        {
-            return currencyCounter;
-        }
+     
         /// <summary>
         /// Calculate Denominations
         /// </summary>
         /// <param name="euroCurrencies"></param>
         /// <param name="currencyCounter"></param>
         /// <param name="amount"></param>
-        public static void CalculateDenominations(decimal[] euroCurrencies, decimal[] currencyCounter, decimal amount)
+        public static decimal[] CalculateDenominations(decimal[] euroCurrencies, decimal[] currencyCounter, decimal amount)
         {
             // to calculate the count against each denominations from the balance amount 
             for (int i = 0; i < euroCurrencies.Length; i++)
@@ -72,14 +62,14 @@ namespace Calculations
                     amount = amount - currencyCounter[i] * euroCurrencies[i];
                 }
             }
-
+            return currencyCounter;
         }
 
         /// <summary>
         /// Fetch pound currencies from file
         /// </summary>
         /// <returns></returns>
-        private static decimal[] FetchCurrencies()
+        public static decimal[] FetchCurrencies()
         {
             string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\Currencies.txt");
